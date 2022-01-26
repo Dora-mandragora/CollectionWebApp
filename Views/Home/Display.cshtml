@@ -1,0 +1,26 @@
+﻿
+
+<h1>Главная</h1>
+<h4>Пользователь @ViewBag.User.Login</h4>
+Email: <b>@ViewBag.User.Email</b> <br />
+
+<h2>Популярные колллекции</h2>
+@if(@ViewBag.Collections.Count == 0)
+{
+	@:У этого пользователя еще нет коллекций.
+}
+@for(int i = 0; i < ViewBag.Collections.Count; i++)
+{
+	<a href = "~/Collection/Display/@ViewBag.Collections[i].Id">@ViewBag.Collections[i].Name</a>	
+	<br />
+}
+
+<h2>Последние добавленные элементы</h2>
+@{
+	int ElCount = 10 < ViewBag.History.Items.Count ? 10 : ViewBag.History.Items.Count;
+	for(int i = 0; i < ElCount; i++)
+	{
+		<a href = "~/Item/Display/@ViewBag.History.Items[i].Id">@ViewBag.History.Items[i].Name</a>	
+		<br />
+	}
+}

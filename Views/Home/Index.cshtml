@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1>Личный кабинет @ViewBag.User.Login</h1>
+</div>
+Email: <b>@ViewBag.User.Email</b> <br />
+Статус: 
+	@if(ViewBag.User.Role.Id == 1)
+	{
+		<b>Администратор</b>
+		<form asp-action = "Display" asp-controller = "User" method = "get">
+		<div class = "form-group">
+			<input type = submit value = "Просмотр пользователей" class = "btn btn-outline-dark"/>
+		</div> 
+		</form>
+	}
+	else
+	{
+		<b>Пользователь</b>
+	}
+<br />
+<form asp-action = "Create" asp-controller = "Collection" method = "get">
+		<div class = "form-group">
+			<input type = submit value = "Новая коллекция" class = "btn btn-outline-dark"/>
+		</div> 
+		</form>
+<form asp-action = "Logout" asp-controller = "Account">
+		<div class = "form-group">
+			<input type = submit value = "Выйти" class = "btn btn-outline-dark"/>
+		</div> 
+		</form>
+
+<h3>Ваши коллекции</h3>		
+@if(@ViewBag.Collections.Count == 0)
+{
+	@:У вас пока что нет коллекций.
+	<a href = "Collection/Create">Добавить?</a>
+}
+@foreach(var c in @ViewBag.Collections)
+{
+	<a href = "Collection/Display/@c.Id">@c.Name</a>	
+	<br />
+}

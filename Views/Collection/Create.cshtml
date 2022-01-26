@@ -1,0 +1,44 @@
+﻿@model CollectionWebApp.ViewModels.CollectionModel
+
+
+<form asp-action = "Create" asp-controller = "Collection" method = "post" enctype="multipart/form-data">
+    
+    <div class="table">
+        <div class = "row">
+           <h1>Новая коллекция</h1>      
+        </div>
+        <div class = "row">
+            <div><h6>Изображение</h6></div>          
+        </div>
+        <div class = "row" id="dropzone">
+            @{/*<div class="dropzone" id="uploader" action="Create" name = "image"></div>*/}
+            <input name = "image" asp-for = "Image" type = "file"/>
+        </div>
+        <div class = "row">
+            <div><h6>Название таблицы:</h6></div>          
+        </div>
+         <div class = "row"><input asp-for = "Name"/></div>
+        <div class = "row">
+            <div><h6>Описание:</h6>
+                <textarea type = "text" cols = "50" maxlength = "255" asp-for = "Description"></textarea>
+                </div>
+        </div>
+        <div class = "row">
+            <div><h6>Тема:</h6>
+                <select name = "topic" asp-for = "Topic">
+                    @foreach(var t in @ViewBag.Topics)
+                    {
+                        <option>@t.Name</option>
+                    }
+                </select>                
+                </div>
+        </div>
+        <div class = "row"><br /></div>
+        <div class = "row">
+            <div>
+                 <button class="btn btn-outline-dark">Создать</button>
+            </div>
+        </div>
+    </div>
+</form>
+                   

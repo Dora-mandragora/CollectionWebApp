@@ -1,0 +1,11 @@
+﻿@model CollectionWebApp.ViewModels.ItemModel
+
+<form asp-action = "Add">
+<table class = "table">
+    <tbody>
+        <td>Введите элемент:</td>
+        <td><input asp-for = "Name"/></td>
+        <td><button class="btn btn-outline-dark" name = "id" value = @ViewBag.Collection.Id>Добавить</button></td>
+    </tbody>
+</table>
+</form>

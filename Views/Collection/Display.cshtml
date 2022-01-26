@@ -1,0 +1,84 @@
+﻿@model CollectionWebApp.Models.Collection
+
+<a href = "~/Home">Назад</a>
+<br />
+@if(Model.Image != null)
+{
+	<img width="200" height="200" src="@Url.Action("GetImage", "Collection", new {id = @Model.Id})"/>
+}
+<h2>Таблица @Model.Name</h2>
+<h6>Тема: @Model.Topic.Name</h6>
+
+@if(Model.Description != null)
+{
+	@:Описание: @Model.Description	
+}
+
+@if(User.Identity.Name == Model.User.Login)
+{
+	<div class = "btn-toolbar">	
+	<button class = "btn btn-outline-dark" name = "id" value = @Model.Id>Изменить</button>
+	<form asp-action = "Delete" asp-controller = "collection">
+		<button class = "btn btn-outline-dark" onclick="ConfirmationBox();" name = "id" value = @Model.Id>Удалить таблицу</button>
+	</form>
+</div>
+}
+
+
+<form method = "post" asp-action = "Delete" asp-controller = "Item">
+@if (Model.Items.Count != 0)
+{
+<table class = "table table-sortable">
+	<thead>
+		<tr>
+			@*<th>Номер</th>*@
+			<td><input type="checkbox" id="check_all">	</td>
+			<th>Название элемента</th>
+		</tr>
+	</thead>
+	<tbody>
+		
+			@foreach (var item in Model.Items)
+			{
+				<tr>
+					@*<td>@item.Id</td>*@
+					<td><input class="checkbox" type="checkbox" name = "ids" id = "@item.Id" value ="@item.Id"></td>
+					<td><a href = "~/Item/Display/@item.Id">@item.Name</a></td>
+				</tr>
+			}	
+
+	</tbody>
+</table>
+}
+else
+{
+	<h2>Элементы</h2>
+	@:Коллекция пуста.		
+}
+
+<div class = "btn-toolbar">
+@if(User.Identity.Name == Model.User.Login)
+	{
+		
+	<button class = "btn btn-outline-dark" name = "bid" value = @Model.Id>Удалить элемент</button>	
+	}
+</form>
+@if(User.Identity.Name == Model.User.Login)
+{
+	<form asp-action = "Add" asp-controller = "Item" method = "get">
+		<button class = "btn btn-outline-dark" name = "id" value = @Model.Id>Добавить элемент</button>	
+	</form>
+}
+</div>
+	
+	
+
+<script type="text/javascript">
+	//может потом разобраться, как это сделать
+            function ConfirmationBox() {
+                var Yes = confirm("Вы уверены?");
+                var check = new Boolean(Yes);
+                return check ? true : false; 
+                }
+            }  
+        </script>

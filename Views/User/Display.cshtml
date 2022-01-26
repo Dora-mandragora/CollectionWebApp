@@ -1,0 +1,50 @@
+﻿@model IEnumerable<CollectionWebApp.Models.User>
+
+<a href = "~/Home">Назад</a>
+<form method = "post" asp-action = "Define" asp-controller = "User">
+<table class = "table table-striped table-sortable">
+	<thead>
+	<tr class = "row">
+		<td class = "col">
+			<div class = "form-check">
+				<input type="checkbox" value="" id="check_all">				
+			</div>	
+		</td>
+			<th class = "col">Id</th>
+			<th class = "col">Login</th>
+			<th class = "col">Email</th>
+			<th class = "col">Registration Date</th>
+			<th class = "col">Last Login Date</th>
+			<th class = "col">Status</th>
+			<th class = "col">Role</th>
+		</tr>
+		</thead>
+		<tbody>
+	@foreach(var user in Model)
+	{
+		<tr class = "row">
+			<td class = "col">
+				<div class = "form-check">
+					<input class="checkbox" type="checkbox" name = "ids" id = "@user.Id" value ="@user.Id">
+				</div>
+			</td>
+			<td class = "col">@user.Id</td>
+			<td class = "col">@user.Login</td>
+			<td class = "col">@user.Email</td>
+			<td class = "col">@user.RegistrationDate</td>
+			<td class = "col">@user.LastLoginDate</td>
+			<td class = "col">@user.Status.Name</td>
+			<td class = "col">@user.Role.Name</td>
+		</tr>		
+	}
+	</tbody>
+</table>
+<div class = "btn-toolbar">	
+		<div class = "form-group">
+			<button type = "submit" class ="btn btn-outline-dark" name = "button" value = "block_button" >Заблокировать</button>		
+			<button class ="btn btn-outline-dark" name = "button" value = "unblock_button">Разблокировать</button>
+			<button class ="btn btn-outline-dark" name = "button" value = "delete_button">Удалить</button>
+			<button class ="btn btn-outline-dark" name = "button" value = "change_role_button">Сделать администратором</button>
+		</div> 
+		</form> 
+</div>

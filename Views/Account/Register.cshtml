@@ -1,0 +1,43 @@
+﻿
+@model CollectionWebApp.ViewModels.RegisterModel
+
+@{
+	//пока представление чисто по красоте, не умеет ничего
+}
+
+<form asp-action="Register" asp-controller="Account" asp-anti-forgery="true"  method = "post">
+    <div class="validation" asp-validation-summary="ModelOnly"></div>
+<div class="table table-bordered">
+        <div class="row">
+            <div class="col-12"><h3>Регистрация</h3></div>  
+        </div>      
+        <div class="row">
+            <div class="col-12"><h6>Логин:</h6>
+            <input class = "form-control col-8" type = "text" asp-for = "Login" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12"><h6>Email:</h6>
+            <input class = "form-control col-8" type = "text" asp-for = "Email" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12"><h6>Пароль:</h6>        
+            <input class = "form-control col-8" type = "password" asp-for = "Password" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12"><h6>Повторите пароль:</h6>        
+            <input class = "form-control col-8" type = "password" asp-for = "ConfirmPassword" />
+             <span asp-validation-for="ConfirmPassword" />
+            </div>
+        </div>
+        @{/*исправить, чтобы кнопки были в одну линию*/}
+        <div class="row">
+            <div class="col-12 form-group">            
+                    <button class="btn btn-outline-dark" >Зарегистрироваться</button>
+            </div>
+        </div>  
+</div>
+</form>
+        

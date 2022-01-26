@@ -1,0 +1,15 @@
+﻿@model IEnumerable<CollectionWebApp.Models.Item>
+
+
+<h2>Результаты поиска</h2>
+<table>
+	<tbody>
+@foreach(var item in Model)
+{	
+	<tr><a href = "~/Item/Display/@item.Id">@item.Name</a></tr>
+	<br />
+	<tr>Текст поиска/Потом вставить</tr>		
+	<br />
+}
+	</tbody>
+</table>

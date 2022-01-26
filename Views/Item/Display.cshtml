@@ -1,0 +1,35 @@
+﻿@model CollectionWebApp.Models.Item
+
+<a href = "~/Home">Назад</a>
+<h2>@Model.Name</h2>
+
+<form asp-action = "AddComment" asp-controller = "Item">
+	<h2>Комментарии</h2>
+	<textarea type = "text" cols = "50" maxlength = "255" name = "text"></textarea>
+	<button class="btn btn-outline-dark" name = "id" value = @Model.Id>Отправить</button>
+</form>
+
+<div id = "">
+@if(Model.Comments.Count != 0)
+{
+	@await Html.PartialAsync("_Comments", Model.Comments);
+}
+</div>
+@{
+	//добавить попозже лайки
+}
+
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.pack.js">
+            function UpdateBlock() {
+                $('#Update').load('@(Html.PartialAsync("_Comments", Model.Comments))', {
+                    asd: Math.random() // что б IE не кешировал
+                }, function () {
+                    setTimeout(UpdateBlock, 5000);
+                });
+                
+            }
+            $(document).ready(function(){
+                UpdateBlock()
+            });
+         </script>

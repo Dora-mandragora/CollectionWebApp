@@ -1,0 +1,22 @@
+
+  body div[class^="col"] {
+    border: 0px solid #dddd;
+    
+    text-align: center;
+    color: #dddd;
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+  .table{
+    border: 1px solid #303030;
+  }
+  body{
+    background-color: #141414;
+  }
+  .col-centered{        
+    background-color: #303030;   
+  }
+  .btn{        
+    background-color: #141414;
+    color: #dddd;
+  }

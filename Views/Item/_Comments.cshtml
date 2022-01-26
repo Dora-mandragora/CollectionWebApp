@@ -1,0 +1,14 @@
+﻿@model IEnumerable<CollectionWebApp.Models.Comment>
+
+<table>
+	<tbody>
+		@foreach(var com in Model)
+	{
+		<tr>
+			<td><a href = "~/Home/Display/@com.FromUser">User/Temp</a></td>
+			<td>@com.Content</td>
+		</tr>		
+	}
+	</tbody>
+	
+</table>

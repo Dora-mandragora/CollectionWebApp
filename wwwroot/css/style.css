@@ -1,0 +1,36 @@
+﻿
+body.light-theme div[class^="col"] {
+    border: 0px solid #c2c2c2;
+    text-align: center;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+body.light-theme {
+    background-color: #fcfcfc;
+}
+
+body.dark-theme div[class^="col"] {
+    border: 0px solid #dddd;
+    text-align: center;
+    color: #dddd;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.table.dark-theme {
+    border: 1px solid #303030;
+}
+
+.body.dark-theme {
+    background-color: #141414;
+}
+
+.col-centered.dark-theme {
+    background-color: #303030;
+}
+
+.btn.dark-theme {
+    background-color: #141414;
+    color: #dddd;
+}

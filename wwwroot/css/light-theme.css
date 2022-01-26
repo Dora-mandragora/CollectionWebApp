@@ -1,0 +1,10 @@
+      body div[class^="col"] {
+        border: 0px solid #c2c2c2;
+        text-align: center;
+        padding-top: 8px;
+        padding-bottom: 8px;
+      }
+      body{
+        background-color: #fcfcfc;
+      }
+     
