@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -16,6 +17,7 @@ namespace CollectionWebApp.Controllers
         public AccountController(UserContext context)
         {
             _context = context;
+            if (_context.Users.Count() == 0) CreateAdmin();            
         }
         public IActionResult Index()
         {
@@ -113,6 +115,28 @@ namespace CollectionWebApp.Controllers
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("", "Home");
+        }
+
+        private async Task<IActionResult> CreateAdmin()
+        {
+            var admin = new User
+            {
+                Login = "admin",
+                Email = "",
+                RegistrationDate = System.DateTime.Now,
+                Password = Hash.GetHashString("admin"),
+                LastLoginDate = System.DateTime.Now,
+                Status = await _context.Statuses.FirstOrDefaultAsync(s => s.Id == 1)
+            };
+            Role userRole = await _context.Roles.FirstOrDefaultAsync(r => r.Name == "admin");
+            if (userRole != null)
+                admin.Role = userRole;
+            var adminHistory = new ItemHistory { User = admin };
+            admin.ItemHistory = adminHistory;
+
+            _context.Users.Add(admin);
+            await _context.SaveChangesAsync();
+            return null;
         }
     }
 }
