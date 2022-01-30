@@ -3,13 +3,10 @@
 namespace CollectionWebApp.ViewModels
 {
     public class LoginModel
-    {
-
-        //[Required(ErrorMessage = "Логин не указан")]
+    {        
         public string Login { get; set; }
 
-        [DataType(DataType.Password)]
-        //[Required(ErrorMessage = "Пароль не указан")]
+        [DataType(DataType.Password)]        
         public string Password { get; set; }
 
     }

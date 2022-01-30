@@ -35,10 +35,8 @@ namespace CollectionWebApp.Controllers
         public async Task<IActionResult> Login(LoginModel model)
         {
             if (ModelState.IsValid)
-            {
-                //----
-                User user = await _context.Users.FirstOrDefaultAsync(u => u.Login == model.Login && u.Password == Hash.GetHashString(model.Password));
-                //---
+            {                
+                User user = await _context.Users.FirstOrDefaultAsync(u => u.Login == model.Login && u.Password == Hash.GetHashString(model.Password));                
                 if (user != null)
                 {
                     user.Role = await _context.Roles.FirstOrDefaultAsync(r => r.Users.Contains(user));
@@ -46,12 +44,10 @@ namespace CollectionWebApp.Controllers
                     await Authenticate(user);
                     user.LastLoginDate = System.DateTime.Now;
                     _context.SaveChanges();
-                    //---
                     if (user.Status.Id == 2)                    
                         ModelState.AddModelError("", "Пользователь заблокирован");
                     else
-                        return RedirectToAction("", "Home");                  
-                    
+                        return RedirectToAction("", "Home");                                    
                 }
                 else ModelState.AddModelError("", "Неверный логин или пароль");
             }
@@ -82,7 +78,6 @@ namespace CollectionWebApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                //--
                 User user = await _context.Users.FirstOrDefaultAsync(u => u.Login == model.Login);
                 if (user == null)
                 {
@@ -98,9 +93,7 @@ namespace CollectionWebApp.Controllers
                     };
                     Role userRole = await _context.Roles.FirstOrDefaultAsync(r => r.Name == "user");
                     if (userRole != null)                    
-                        user.Role = userRole;                       
-                    
-                    //----
+                        user.Role = userRole;  
                     _context.Add(user);
                     await _context.SaveChangesAsync();
                     await Authenticate(user);

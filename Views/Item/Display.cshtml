@@ -15,21 +15,3 @@
 	@await Html.PartialAsync("_Comments", Model.Comments);
 }
 </div>
-@{
-	//добавить попозже лайки
-}
-
-
-<script type="text/javascript" src="http://code.jquery.com/jquery-latest.pack.js">
-            function UpdateBlock() {
-                $('#Update').load('@(Html.PartialAsync("_Comments", Model.Comments))', {
-                    asd: Math.random() // что б IE не кешировал
-                }, function () {
-                    setTimeout(UpdateBlock, 5000);
-                });
-                
-            }
-            $(document).ready(function(){
-                UpdateBlock()
-            });
-         </script>

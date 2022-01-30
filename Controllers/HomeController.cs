@@ -29,9 +29,8 @@ namespace CollectionWebApp.Controllers
                 .Where(c => c.User == user)
                 .ToList();
             return View();            
-        }
+        }        
         
-        //он не для аутенцификации, просто отображение
         public async Task<IActionResult> Display(int? id)
         {
             User user = null;

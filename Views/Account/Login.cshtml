@@ -1,8 +1,6 @@
 ﻿
 @model CollectionWebApp.ViewModels.LoginModel
-@{
-    //пока представление чисто по красоте, не умеет ничего
- }
+
  <form asp-action = "Login" asp-controller = "Account" asp-antiforgery = "true">
      <div class = "validation" asp-validation-summary = "ModelOnly"></div>
 <div class="table table-bordered">
@@ -20,9 +18,7 @@
             </div>
         </div>
         </form>
-        @{/*исправить, чтобы кнопки были в одну линию*/}
         <div class="row">             
-                @*Для кнопок в одну линию надо бы добавить btn-toolbar но тогда они в левую ж*** улетают*@
                  <div class = "col-12">
                     <button class="btn btn-outline-dark">Войти</button> </div>  
                     <div class = "col-12">

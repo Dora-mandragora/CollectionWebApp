@@ -66,6 +66,7 @@ namespace CollectionWebApp.Controllers
             foreach (var id in ids)
             {
                 User el = await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
+                if (el.Login == User.Identity.Name) continue;
                 _context.Remove(el);
             }
 

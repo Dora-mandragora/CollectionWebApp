@@ -35,7 +35,6 @@ namespace CollectionWebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(CollectionModel model)
         {
-            //ViewBag.Topics = _context.Topics.ToList();
             var user = _context.Users.FirstOrDefault(u => u.Login == User.Identity.Name);
             ViewBag.User = user;
             if (ModelState.IsValid)
@@ -105,9 +104,9 @@ namespace CollectionWebApp.Controllers
         public ActionResult GetImage(int id)
         {
             var collection = _context.Collections.FirstOrDefault(c => c.Id == id);
-            byte[] bytes = collection.Image; //Get the image from your database
-            if (bytes == null) return null; //поставить картинку по умолчанию
-            else return File(bytes, "image/png"); //or "image/jpeg", depending on the format
+            byte[] bytes = collection.Image; 
+            if (bytes == null) return null; 
+            else return File(bytes, "image/png"); 
         }
     }
 }

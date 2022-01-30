@@ -31,7 +31,6 @@
 <table class = "table table-sortable">
 	<thead>
 		<tr>
-			@*<th>Номер</th>*@
 			<td><input type="checkbox" id="check_all">	</td>
 			<th>Название элемента</th>
 		</tr>
@@ -41,7 +40,6 @@
 			@foreach (var item in Model.Items)
 			{
 				<tr>
-					@*<td>@item.Id</td>*@
 					<td><input class="checkbox" type="checkbox" name = "ids" id = "@item.Id" value ="@item.Id"></td>
 					<td><a href = "~/Item/Display/@item.Id">@item.Name</a></td>
 				</tr>
@@ -71,14 +69,3 @@ else
 }
 </div>
 	
-	
-
-<script type="text/javascript">
-	//может потом разобраться, как это сделать
-            function ConfirmationBox() {
-                var Yes = confirm("Вы уверены?");
-                var check = new Boolean(Yes);
-                return check ? true : false; 
-                }
-            }  
-        </script>
